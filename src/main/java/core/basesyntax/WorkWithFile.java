@@ -18,7 +18,7 @@ public class WorkWithFile {
         saveToCsv(report, toFileName);
     }
 
-    public String[][] readCsv(String fileName) {
+    private String[][] readCsv(String fileName) {
         try {
             List<String> allLines = Files.readAllLines(Path.of(fileName));
             String[][] data = new String[allLines.size()][RECORD_SIZE];
@@ -34,7 +34,7 @@ public class WorkWithFile {
         }
     }
 
-    public void saveToCsv(Report report, String fileName) {
+    private void saveToCsv(Report report, String fileName) {
         String[] lines = new String[] {
                 "supply," + report.getSupply(),
                 "buy," + report.getBuy(),
