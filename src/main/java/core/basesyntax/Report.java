@@ -22,7 +22,7 @@ public class Report {
         return buy;
     }
 
-    private static Report make(int[][] data) {
+    private static Report prepare(int[][] data) {
         int supply = 0;
         int buy = 0;
         for (int[] record : data) {
@@ -32,7 +32,7 @@ public class Report {
         return new Report(supply, buy);
     }
 
-    public static Report make(String[][] data) {
+    public static Report prepare(String[][] data) {
         int[][] values = new int[data.length][VALUES_COUNT];
         int i = 0;
         for (String[] record : data) {
@@ -41,6 +41,6 @@ public class Report {
             values[i][SUPPLY_INDEX] = operation.equals(SUPPLY_OPERATION) ? amount : 0;
             values[i++][BUY_INDEX] = operation.equals(BUY_OPERATION) ? amount : 0;
         }
-        return make(values);
+        return prepare(values);
     }
 }

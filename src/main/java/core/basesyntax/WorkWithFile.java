@@ -14,7 +14,7 @@ public class WorkWithFile {
 
     public void getStatistic(String fromFileName, String toFileName) {
         String[][] csv = readCsv(fromFileName);
-        Report report = Report.make(csv);
+        Report report = Report.prepare(csv);
         saveToCsv(report, toFileName);
     }
 
@@ -36,9 +36,9 @@ public class WorkWithFile {
 
     private void saveToCsv(Report report, String fileName) {
         String[] lines = new String[] {
-                "supply," + report.getSupply(),
-                "buy," + report.getBuy(),
-                "result," + (report.getSupply() - report.getBuy())
+                new StringBuilder("supply,").append(report.getSupply()).toString(),
+                new StringBuilder("buy,").append(report.getBuy()).toString(),
+                new StringBuilder("result,").append(report.getSupply() - report.getBuy()).toString()
         };
         try {
             Files.write(Path.of(fileName), Arrays.asList(lines));
